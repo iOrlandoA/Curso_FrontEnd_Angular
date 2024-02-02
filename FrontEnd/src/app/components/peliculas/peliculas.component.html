@@ -1,3 +1,48 @@
 <h1 class="subheader"> Peliculas</h1>
 <h2>{{titulo}}</h2>
 <button (click)="cambiarTitulo()">Pulsame</button>
+<hr/>
+
+<h2>Mostrar Primera pelicula</h2>
+<p>{{peliculas[0].title}}</p>
+<hr/>
+
+<h2>Numero de peliculas</h2>
+<div *ngIf="peliculas.length <= 3">
+    Hay pocas peliculas:
+</div>
+<div *ngIf="peliculas.length > 3">
+    Hay muchas peliculas:
+</div>
+
+<span>{{peliculas.length}}</span>
+<hr>
+<!--Realizar For-->
+<h2 class="subheader">Listado de Peliculas</h2>
+<div id="articles" *ngIf="peliculas">
+    <article class="article-item" id="article-template" *ngFor="let pelicula of peliculas; let i= index;">
+        <div class="image-wrap">
+            <img alt="{{pelicula.title}}" src={{pelicula.image}} />
+        </div>
+        <h2>{{i+1}} {{pelicula.title}}</h2>        
+        <span class="date">
+            Hace 5 minutos
+        </span>
+        <span class="year"
+            [ngClass]="{
+                'year-green': pelicula.year > 2016,
+                'year-red': pelicula.year <= 2016
+            }">
+            
+            {{pelicula.year}}
+        </span>
+
+
+        <a href="#">Leer más</a>
+        <div class="clearfix"></div>
+    </article>
+
+</div>
+
+
+
